@@ -1,0 +1,137 @@
+<Window x:Class="Курсовая_ооп.PersonnelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NEXUS HUMAN RESOURCES MANAGEMENT" Height="600" Width="950"
+        Background="#0B0B11" WindowStartupLocation="CenterOwner" FontFamily="Segoe UI">
+    
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="HrButton">
+            <Setter Property="Background" Value="#141420"/>
+            <Setter Property="Foreground" Value="#00FFAA"/>
+            <Setter Property="BorderBrush" Value="#00FFAA"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style TargetType="Button" x:Key="FireButton" BasedOn="{StaticResource HrButton}">
+            <Setter Property="Foreground" Value="#FF4A7A"/>
+            <Setter Property="BorderBrush" Value="#FF4A7A"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="#11111A" CornerRadius="6" BorderBrush="#202030" BorderThickness="1" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="🎤 РЕЕСТР ИСПОЛНИТЕЛЕЙ" Foreground="#00FFAA" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <ListBox x:Name="lbArtists" Grid.Row="1" Background="#0A0A0F" Foreground="White" BorderThickness="0" SelectionChanged="LbArtists_SelectionChanged"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Background="#11111A" CornerRadius="6" BorderBrush="#202030" BorderThickness="1" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="🎛️ ШТАТ ЗВУКОИНЖЕНЕРОВ" Foreground="#9D4EDD" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <ListBox x:Name="lbEngineers" Grid.Row="1" Background="#0A0A0F" Foreground="White" BorderThickness="0" SelectionChanged="LbEngineers_SelectionChanged"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="15"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="#12121F" CornerRadius="6" BorderBrush="#252535" BorderThickness="1" Padding="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="📋 КАРТОЧКА ЛИЧНОГО ДЕЛА СОТРУДНИКА" Foreground="#757585" FontSize="11" FontWeight="Bold" Margin="0,0,0,15"/>
+                    
+                    <TextBlock x:Name="txtProfileInfo" Grid.Row="1" Text="Выберите сотрудника для просмотра досье." Foreground="White" FontSize="13" TextWrapping="Wrap" FontFamily="Consolas"/>
+                    
+                    <Button x:Name="btnFire" Grid.Row="2" Content="❌ УВОЛИТЬ / УДАЛИТЬ ИЗ СИСТЕМЫ" Style="{StaticResource FireButton}" HorizontalAlignment="Stretch" Height="35" Click="BtnFire_Click" IsEnabled="False"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2" Background="#11111A" CornerRadius="6" BorderBrush="#202030" BorderThickness="1" Padding="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="➕ РЕГИСТРАЦИЯ НОВОГО СОТРУДНИКА" Foreground="#00FFAA" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
+                    
+                    <TabControl Grid.Row="1" Background="Transparent" BorderThickness="0">
+                        <TabItem Header="Новый Артист" Foreground="Black">
+                            <StackPanel Margin="0,10,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="addArtistName" Grid.Column="0" Background="#1A1A26" Foreground="White" Padding="4" Text="Имя..."/>
+                                    <TextBox x:Name="addArtistGenre" Grid.Column="2" Background="#1A1A26" Foreground="White" Padding="4" Text="Жанр..."/>
+                                </Grid>
+                                <TextBox x:Name="addArtistNotes" Background="#1A1A26" Foreground="White" Padding="4" Margin="0,6,0,6" Text="Примечания..."/>
+                                <Button Content="ЗАРЕГИСТРИРОВАТЬ ПЕВЦА" Style="{StaticResource HrButton}" Click="BtnAddArtist_Click"/>
+                            </StackPanel>
+                        </TabItem>
+                        
+                        <TabItem Header="Новый Специалист" Foreground="Black">
+                            <StackPanel Margin="0,10,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="addEngName" Grid.Column="0" Background="#1A1A26" Foreground="White" Padding="4" Text="Имя инженера..."/>
+                                    <TextBox x:Name="addEngExp" Grid.Column="2" Background="#1A1A26" Foreground="White" Padding="4" Text="Стаж (лет)"/>
+                                    <TextBox x:Name="addEngProfile" Grid.Column="4" Background="#1A1A26" Foreground="White" Padding="4" Text="Профиль..."/>
+                                </Grid>
+                                <Grid Margin="0,5,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="addEngPosition" Grid.Column="0" Background="#1A1A26" Foreground="White" Padding="4" Text="Должность..."/>
+                                    <TextBox x:Name="addEngNotes" Grid.Column="2" Background="#1A1A26" Foreground="White" Padding="4" Text="Примечания..."/>
+                                </Grid>
+                                <Button Content="ПРИНЯТЬ СПЕЦИАЛИСТА В ШТАТ" Style="{StaticResource HrButton}" BorderBrush="#9D4EDD" Foreground="#9D4EDD" Click="BtnAddEngineer_Click"/>
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

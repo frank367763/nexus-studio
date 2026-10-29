@@ -1,0 +1,17 @@
+# Build output and local IDE settings
+**/bin/
+**/obj/
+.vs/
+.idea/
+*.user
+*.suo
+TestResults/
+*.trx
+# Local data and secrets
+.env
+.env.*
+!.env.example
+artists.json
+engineers.json
+*.wav
+*.mp3
